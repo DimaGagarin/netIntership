@@ -7,17 +7,20 @@ using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddApplication();
+var configuration = new ConfigurationBuilder()
+           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+           .Build();
 
 IdentityModelEventSource.ShowPII = true;
 
-builder.Services.AddApplicationDbContext(builder.Configuration);
-builder.Services.AddRepositories();
+builder.Services
+    .AddApplicationDbContext(configuration)
+    .AddRepositories();
+
+builder.Services.AddApplication();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -27,7 +30,7 @@ builder.Services
       .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
       .AddIdentityServerAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme, options =>
       {
-          options.Authority = builder.Configuration["AuthSettings:Authority"];
+          options.Authority = configuration["AuthSettings:Authority"];
           options.ApiName = "Catalog";
           options.RequireHttpsMetadata = false;
       });
@@ -42,8 +45,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.OAuthClientId("CatalogClient");
-        options.OAuthClientSecret("08c0f7a5-5d48-4041-a2f6-95134be09a94");
+        options.OAuthClientId(configuration["AuthSettings:AuthClientId"]);
+        options.OAuthClientSecret(configuration["AuthSettings:AuthClientSecret"]);
     });
 }
 

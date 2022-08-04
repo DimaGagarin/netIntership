@@ -96,7 +96,6 @@ namespace Identity.Infostructure.IoC
                     await userManager.AddToRoleAsync(admin, RoleType.Admin.ToString());
                 }
             }
-
         }
     }
 }

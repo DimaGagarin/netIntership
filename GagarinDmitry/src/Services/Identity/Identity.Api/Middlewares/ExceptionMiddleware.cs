@@ -9,7 +9,7 @@ namespace Identity.WebApi.Middlewares
     {
         private readonly ILogger<ExceptionMiddleware> logger;
 
-        private readonly RequestDelegate _next;
+        private readonly RequestDelegate next;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionMiddleware"/> class
@@ -18,7 +18,7 @@ namespace Identity.WebApi.Middlewares
         /// <param name="logger"></param>
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
-            _next = next;
+            this.next = next;
             this.logger = logger;
         }
 
@@ -26,12 +26,11 @@ namespace Identity.WebApi.Middlewares
         /// Processing the request
         /// </summary>
         /// <param name="httpContext"></param>
-        /// <returns></returns>
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                await _next(httpContext);
+                await next(httpContext);
             }
             catch (Exception ex)
             {

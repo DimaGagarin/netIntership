@@ -28,7 +28,7 @@ namespace Basket.WebApi.Extensions.Options
                         TokenUrl = new Uri("http://host.docker.internal:10000/connect/token"),
                         Scopes = new Dictionary<string, string>
                         {
-                            {"Basket", "Basket"}
+                            { "Basket", "Basket" }
                         }
                     }
                 }

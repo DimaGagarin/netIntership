@@ -12,7 +12,7 @@ namespace Identity.Infostructure.Contexts
         public IConfiguration Configuration { get; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
-    : base(options)
+            : base(options)
         {
             this.Configuration = configuration;
             Database.Migrate();

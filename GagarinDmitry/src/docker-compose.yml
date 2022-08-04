@@ -53,5 +53,4 @@ services:
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.16.1
-   
+    image: docker.elastic.co/kibana/kibana:7.16.1  

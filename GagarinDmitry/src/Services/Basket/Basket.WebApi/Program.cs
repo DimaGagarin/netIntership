@@ -7,14 +7,17 @@ using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = new ConfigurationBuilder()
+           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+           .Build();
+
 builder.Services.AddApplication();
 
 IdentityModelEventSource.ShowPII = true;
 
-builder.Services.AddApplicationDbContext(builder.Configuration);
-builder.Services.AddRepositories();
-
-// Add services to the container.
+builder.Services
+    .AddApplicationDbContext(configuration)
+    .AddRepositories();
 
 builder.Services.AddProducers();
 
@@ -22,7 +25,7 @@ builder.Services
       .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
       .AddIdentityServerAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme, options =>
       {
-          options.Authority = builder.Configuration["AuthSettings:Authority"];
+          options.Authority = configuration["AuthSettings:Authority"];
           options.ApiName = "Basket";
           options.RequireHttpsMetadata = false;
       });
@@ -42,8 +45,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.OAuthClientId("BasketClient");
-        options.OAuthClientSecret("70dc89ef-d09e-4a6d-94ba-bcd66a723e92");
+        options.OAuthClientId(configuration["AuthSettings:AuthClientId"]);
+        options.OAuthClientSecret(configuration["AuthSettings:AuthClientSecret"]);
     });
 }
 
