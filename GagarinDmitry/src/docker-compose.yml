@@ -1,0 +1,57 @@
+version: '3.4'
+
+services:
+  catalog.api:
+    container_name: catalog.api
+    image: ${DOCKER_REGISTRY-}catalogwebapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/Dockerfile
+
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:latest
+
+  zookeeper:
+    container_name: zookeeper
+    image: confluentinc/cp-zookeeper:7.0.0
+
+  broker:
+    container_name: broker
+    image: confluentinc/cp-kafka:7.0.0
+
+  basket.api:
+    container_name: basket.api
+    image: ${DOCKER_REGISTRY-}basketwebapi
+    build:
+      context: .
+      dockerfile: Services/Basket/Dockerfile
+
+  ocelotapigateway:
+    container_name: ocelot.api
+    image: ${DOCKER_REGISTRY-}ocelotapigateway
+    build:
+      context: .
+      dockerfile: ApiGateways/Ocelot/OcelotApiGateway/Dockerfile
+
+  sqlserver:
+    container_name: sqlserver
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    hostname: sqlserver
+
+  identity.api:
+    container_name:  identity.api
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Services/Identity/Identity.Api/Dockerfile
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.16.1
+   
