@@ -1,0 +1,43 @@
+  {
+    "GlobalConfiguration": {
+      "BaseUrl": "http://localhost:8500"
+    },
+    "Routes": [
+      {
+        "DownstreamPathTemplate": "/api/ticket/{id}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "basket.api",
+            "Port": 80
+          }
+        ],
+        "UpstreamPathTemplate": "/ticket/{id}",
+        "UpstreamHttpMethod": [ "GET" , "Delete" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/ticket",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "basket.api",
+            "Port": 80
+          }
+        ],
+        "UpstreamPathTemplate": "/ticket",
+        "UpstreamHttpMethod": [ "GET", "POST" , "Put" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/session/{id}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "catalog.api",
+            "Port": 80
+          }
+        ],
+        "UpstreamPathTemplate": "/session/{id}",
+        "UpstreamHttpMethod": [ "GET", "Delete" ]
+      }
+    ]
+  }

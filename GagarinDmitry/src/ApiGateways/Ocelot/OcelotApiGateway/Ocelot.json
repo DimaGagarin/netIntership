@@ -1,0 +1,43 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5297"
+  },
+    "Routes": [
+      {
+        "DownstreamPathTemplate": "/api/ticket/{id}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5070
+          }
+        ],
+        "UpstreamPathTemplate": "/ticket/{id}",
+        "UpstreamHttpMethod": [ "GET" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/ticket",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5070
+          }
+        ],
+        "UpstreamPathTemplate": "/ticket",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/session/{id}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 5242
+          }
+        ],
+        "UpstreamPathTemplate": "/session/{id}",
+        "UpstreamHttpMethod": [ "GET" ]
+      }
+    ]
+  }
