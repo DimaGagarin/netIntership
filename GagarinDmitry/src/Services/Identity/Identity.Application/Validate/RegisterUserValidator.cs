@@ -3,8 +3,14 @@ using Identity.Application.Models;
 
 namespace Identity.Application.Validate
 {
+    /// <summary>
+    /// <see cref="RegisterUserModel"/> validator.
+    /// </summary>
     public class RegisterUserValidator : AbstractValidator<RegisterUserModel>
     {
+        /// <summary>
+        /// Initializes a new <see cref="RegisterUserValidator"/> instance.
+        /// </summary>
         public RegisterUserValidator()
         {
             RuleFor(x => x.UserName)

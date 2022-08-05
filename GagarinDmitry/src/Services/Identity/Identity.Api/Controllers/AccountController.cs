@@ -33,7 +33,7 @@ namespace Identity.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> RegisterCustomerAsync([FromBody] RegisterUserModel registerUser, CancellationToken cancellationToken)
         {
-            return Ok(await accountService.RegisterUser(registerUser, cancellationToken));
+            return Ok(await accountService.RegisterUserAsync(registerUser, cancellationToken));
         }
     }
 }

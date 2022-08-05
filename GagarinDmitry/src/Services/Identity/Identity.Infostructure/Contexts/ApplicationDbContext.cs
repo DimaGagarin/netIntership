@@ -7,10 +7,21 @@ using System.Reflection;
 
 namespace Identity.Infostructure.Contexts
 {
+    /// <summary>
+    /// Class for the Entity Framework database context used for identity.
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
+        /// <summary>
+        /// Application configuration.
+        /// </summary>
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// Initializes a new <see cref="ApplicationDbContext"/> instance with <see cref="DbContextOptions"/>.
+        /// </summary>
+        /// <param name="options"><see cref="DbContextOptions"/> options.</param>
+        /// <param name="configuration">Application configuration.</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
             : base(options)
         {
@@ -18,6 +29,7 @@ namespace Identity.Infostructure.Contexts
             Database.Migrate();
         }
 
+        /// <inheritdoc/>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
@@ -25,6 +37,7 @@ namespace Identity.Infostructure.Contexts
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
         }
 
+        /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kafka.Configs
 {
-    internal sealed class KafkaSerializer<T> : ISerializer<T>
+    internal sealed class Serializer<T> : ISerializer<T>
     {
         public byte[] Serialize(T data, SerializationContext context)
         {

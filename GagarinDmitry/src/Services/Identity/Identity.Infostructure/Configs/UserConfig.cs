@@ -4,8 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Identity.Infostructure.Configs
 {
+    /// <summary>
+    /// Provides User configuration
+    /// </summary>
     internal class UserConfig : IEntityTypeConfiguration<User>
     {
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
@@ -34,8 +38,8 @@ namespace Identity.Infostructure.Configs
                 .HasIndex(user => user.PhoneNumber)
                 .IsUnique();
             builder
-                .HasIndex(user => user.Age)
-                .IsUnique();
+                .Property(user => user.Age)
+                .IsRequired();
         }
     }
 }

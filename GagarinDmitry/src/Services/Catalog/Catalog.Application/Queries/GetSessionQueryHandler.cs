@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Catalog.Application.Queries
 {
-    public class GetSessionQueryHandler : IRequestHandler<GetSessionQuery, GetSessionModel>
+    public class GetSessionQueryHandler : IRequestHandler<GetSessionQuery, SessionInfoModel>
     {
         private readonly ISessionRepository sessionRepository;
         private readonly IMapper mapper;
@@ -17,11 +17,11 @@ namespace Catalog.Application.Queries
             this.mapper = mapper;
         }
 
-        public async Task<GetSessionModel> Handle(GetSessionQuery request, CancellationToken cancellationToken)
+        public async Task<SessionInfoModel> Handle(GetSessionQuery request, CancellationToken cancellationToken)
         {
             var session = await sessionRepository.GetAsync(request.Id, cancellationToken);
 
-            return mapper.Map<GetSessionModel>(session);
+            return mapper.Map<SessionInfoModel>(session);
         }
     }
 }

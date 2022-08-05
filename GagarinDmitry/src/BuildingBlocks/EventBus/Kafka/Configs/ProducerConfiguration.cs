@@ -2,7 +2,7 @@
 
 namespace Kafka.Configs
 {
-    public class KafkaProducerConfig : ProducerConfig
+    public class ProducerConfiguration : ProducerConfig
     {
         public string Topic { get; set; } = null!;
     }

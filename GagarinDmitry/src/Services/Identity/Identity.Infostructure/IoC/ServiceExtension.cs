@@ -8,8 +8,15 @@ using System.Reflection;
 
 namespace Identity.Infostructure.IoC
 {
+    /// <summary>
+    /// Provides Service extensions
+    /// </summary>
     public static class ServiceExtension
     {
+        /// <summary>
+        /// Adds infrastructure components to the container.
+        /// </summary>
+        /// <param name="services">Service collection to add services descriptors to.</param>
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services)
         {
             services
@@ -29,6 +36,11 @@ namespace Identity.Infostructure.IoC
             return services;
         }
 
+        /// <summary>
+        /// Registers Identity Context
+        /// </summary>
+        /// <param name="services">Service collection to add services descriptors to.</param>
+        /// <param name="configuration">Application configuration</param>
         public static IServiceCollection AddIdentityService(this IServiceCollection services, IConfiguration configuration)
         {
             var migrationsAssembly = typeof(ServiceExtension).GetTypeInfo().Assembly.GetName().Name;

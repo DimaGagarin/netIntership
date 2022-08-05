@@ -8,7 +8,7 @@ namespace Catalog.Application.Profiles
     {
         public SessionProfile()
         {
-            CreateMap<Session, GetSessionModel>();
+            CreateMap<Session, SessionInfoModel>();
         }
     }
 }

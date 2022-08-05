@@ -9,7 +9,7 @@ namespace Catalog.WebApi.Extensions.Consumers
     {
         public static IServiceCollection AddConsumers(this IServiceCollection services)
         {
-            services.AddKafkaConsumer<string, TicketBuyEvent, TicketBuyHandler>(p =>
+            services.AddConsumer<string, TicketBuyEvent, TicketBuyHandler>(p =>
             {
                 p.Topic = "Sessions";
                 p.GroupId = "SessionsGroup";

@@ -2,10 +2,16 @@
 using IdentityServer4;
 using IdentityServer4.Models;
 
-namespace Identity.Api.Configs
+namespace Identity.Infostructure.Configs
 {
+    /// <summary>
+    /// Provides Identity configuration
+    /// </summary>
     public static class IdentityConfig
     {
+        /// <summary>
+        ///  Provides ApiResources configuration
+        /// </summary>
         public static IEnumerable<ApiResource> ApiResources =>
            new List<ApiResource>
            {
@@ -35,6 +41,9 @@ namespace Identity.Api.Configs
                 }
            };
 
+        /// <summary>
+        /// Provides IdentityResources configuration
+        /// </summary>
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>
             {
@@ -42,6 +51,9 @@ namespace Identity.Api.Configs
                 new IdentityResources.Profile()
             };
 
+        /// <summary>
+        /// Provides ApiScopes configuration
+        /// </summary
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
@@ -49,6 +61,9 @@ namespace Identity.Api.Configs
                 new ApiScope("Basket", "BasketScope")
             };
 
+        /// <summary>
+        /// Provides Clients configuration
+        /// </summary>
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {

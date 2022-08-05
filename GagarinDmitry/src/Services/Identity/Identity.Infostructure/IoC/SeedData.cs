@@ -1,6 +1,6 @@
-﻿using Identity.Api.Configs;
-using Identity.Domain.Common.Types;
+﻿using Identity.Domain.Common.Types;
 using Identity.Domain.Entities;
+using Identity.Infostructure.Configs;
 using Identity.Infostructure.Contexts;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
@@ -11,8 +11,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Infostructure.IoC
 {
+    /// <summary>
+    /// Provides Initial Data
+    /// </summary>
     public static class SeedData
     {
+        /// <summary>
+        /// Method for initialize DbContexts
+        /// </summary>
+        /// <param name="app"><see cref="IApplicationBuilder"/> to extend</param>
         public async static Task InitializeDatabase(this IApplicationBuilder app)
         {
             using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>()?.CreateScope();

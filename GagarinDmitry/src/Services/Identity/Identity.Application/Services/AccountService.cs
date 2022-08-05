@@ -8,6 +8,7 @@ using SharedModels.Exceptions;
 
 namespace Identity.Application.Services
 {
+    /// <inheritdoc/>
     public class AccountService : IAccountService
     {
         private readonly IMapper mapper;
@@ -16,6 +17,12 @@ namespace Identity.Application.Services
 
         private readonly SignInManager<User> signInManager;
 
+        /// <summary>
+        /// Initializes a new <see cref="AccountService"/> instance.
+        /// </summary>
+        /// <param name="mapper">Entities to models mapper.</param>
+        /// <param name="userManager"><see cref="UserManager{User}"/> implementation instance.</param>
+        /// <param name="signInManager"><see cref="SignInManager{User}"/> implementation instance.</param>
         public AccountService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             this.mapper = mapper;
@@ -23,7 +30,8 @@ namespace Identity.Application.Services
             this.signInManager = signInManager;
         }
 
-        public async Task<UserInfo> RegisterUser(RegisterUserModel registerUser, CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        public async Task<UserInfo> RegisterUserAsync(RegisterUserModel registerUser, CancellationToken cancellationToken)
         {
             var user = mapper.Map<User>(registerUser);
 

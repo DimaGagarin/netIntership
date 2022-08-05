@@ -2,11 +2,11 @@
 
 namespace Kafka.Configs
 {
-    public class KafkaConsumerConfig : ConsumerConfig
+    public class ConsumerConfiguration : ConsumerConfig
     {
         public string Topic { get; set; } = null!;
 
-        public KafkaConsumerConfig()
+        public ConsumerConfiguration()
         {
             AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
             EnableAutoOffsetStore = false;

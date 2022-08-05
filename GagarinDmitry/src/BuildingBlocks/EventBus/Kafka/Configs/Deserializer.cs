@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kafka.Configs
 {
-    internal sealed class KafkaDeserializer<T> : IDeserializer<T>
+    internal sealed class Deserializer<T> : IDeserializer<T>
     {
         public T Deserialize(ReadOnlySpan<byte> data, bool isNull, SerializationContext context)
         {
@@ -12,7 +12,7 @@ namespace Kafka.Configs
             {
                 if (data.Length > 0)
                 {
-                    throw new ArgumentException("The data is null not null.");
+                    throw new ArgumentException("The data is not null.");
                 }
 
                 return default!;

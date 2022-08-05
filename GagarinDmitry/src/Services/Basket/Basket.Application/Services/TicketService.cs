@@ -34,7 +34,6 @@ namespace Basket.Application.Services
 
             await kafkaProducer.ProduceAsync("ticketBuy", ticketBuyEvent);
 
-
             var ticket = mapper.Map<Ticket>(ticketInfo);
 
             return await ticketRepository.CreateAsync(ticket, cancellationToken);

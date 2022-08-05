@@ -7,15 +7,21 @@ namespace Identity.WebApi.Middlewares
     /// </summary>
     public class ExceptionMiddleware
     {
+        /// <summary>
+        /// <see cref="ILogger{ExceptionMiddleware}"/> ащк registration of application operation states .
+        /// </summary>
         private readonly ILogger<ExceptionMiddleware> logger;
 
+        /// <summary>
+        /// <see cref="RequestDelegate"/> for  process an HTTP request.
+        /// </summary>
         private readonly RequestDelegate next;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionMiddleware"/> class
         /// </summary>
-        /// <param name="next"></param>
-        /// <param name="logger"></param>
+        /// <param name="next"><see cref="RequestDelegate"/> implementation instance.</param>
+        /// <param name="logger"><see cref="ILogger{ExceptionMiddleware}"/> implementation instance.</param>
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             this.next = next;
@@ -25,7 +31,7 @@ namespace Identity.WebApi.Middlewares
         /// <summary>
         /// Processing the request
         /// </summary>
-        /// <param name="httpContext"></param>
+        /// <param name="httpContext"><see cref="HttpContext"/> to encapsulate information about the request.</param>
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -39,6 +45,11 @@ namespace Identity.WebApi.Middlewares
             }
         }
 
+        /// <summary>
+        /// Handles the exception.
+        /// </summary>
+        /// <param name="context"><see cref="HttpContext"/> to encapsulate information about the request.</param>
+        /// <param name="exception"><see cref="Exception"/> to handling</param>
         private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
@@ -51,6 +62,11 @@ namespace Identity.WebApi.Middlewares
             }.ToString());
         }
 
+        /// <summary>
+        /// Gets error code status.
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns>Еhe status code of the error being processed.</returns>
         private static int GetStatusCode(Exception exception)
         {
             return exception switch

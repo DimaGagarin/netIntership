@@ -1,17 +1,16 @@
 ﻿using Confluent.Kafka;
-using Kafka.Configs;
 using Kafka.Producer.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace Kafka.Producer
 {
-    public class KafkaProducer<TK, TV> : IKafkaProducer<TK, TV>
+    public class Producer<TK, TV> : IKafkaProducer<TK, TV>
     {
         private readonly IProducer<TK, TV> producer;
 
         private readonly string topic;
 
-        public KafkaProducer(IOptions<KafkaProducerConfig> topicOptions, IProducer<TK, TV> producer)
+        public Producer(IOptions<Configs.ProducerConfiguration> topicOptions, IProducer<TK, TV> producer)
         {
             topic = topicOptions.Value.Topic;
             this.producer = producer;

@@ -10,7 +10,7 @@ var configuration = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
         .Build();
 
-builder.Services.ConfigureLogs(configuration);
+LoggerConfig.ConfigureLogs(configuration);
 builder.Host.UseSerilog();
 
 builder.Services.AddControllers();

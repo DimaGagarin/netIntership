@@ -7,7 +7,7 @@ namespace Basket.WebApi.Extensions.Produsers
     {
         public static IServiceCollection AddProducers(this IServiceCollection services)
         {
-            services.AddKafkaProducer<string, TicketBuyEvent>(p =>
+            services.AddProducer<string, TicketBuyEvent>(p =>
             {
                 p.Topic = "Sessions";
                 p.BootstrapServers = "broker:29092";

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Catalog.Application.Queries
 {
-    public class GetSessionQuery : IRequest<GetSessionModel>
+    public class GetSessionQuery : IRequest<SessionInfoModel>
     {
         public int Id { get; set; }
 
